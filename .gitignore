@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+build/
+.superpowers/
+.claude/worktrees/
+
+# Private working notes (kept locally, not in the repo)
+BACKLOG.md
+docs/superpowers/
+design/
+.claude/
