@@ -14,17 +14,34 @@ Requires macOS 14 or later (Apple silicon or Intel).
 
 ## Install
 
-Pre-built downloads are not available yet. Build it yourself (needs Xcode):
+Pre-built downloads are not available yet, so you build Gong on your own Mac. This takes about 30–45 minutes the
+first time, most of it downloading Xcode.
+
+1. **Install Xcode** from the App Store (free) and open it once to finish the setup.
+2. **Create a free signing certificate** (needed for notifications; a free Apple ID is enough, no paid developer
+   account): Xcode → **Settings → Accounts → +** → sign in with your Apple ID → select it → **Manage Certificates…
+   → + → Apple Development**.
+3. **Build and install:**
+
+   ```bash
+   git clone https://github.com/baskramp-lab/gong.git
+   cd gong
+   scripts/build-app.sh --install
+   open /Applications/Gong.app
+   ```
+
+Without the certificate from step 2 Gong still runs and still blocks your screen before meetings, but macOS will not
+show its notifications. Signing details: [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) (Dutch).
+
+## Updating
+
+To update, run this in the folder you cloned (about 3 minutes; your settings and calendar address are kept):
 
 ```bash
-git clone https://github.com/baskramp-lab/gong.git
-cd gong
-scripts/build-app.sh --install
-open /Applications/Gong.app
+git pull && scripts/build-app.sh --install && open /Applications/Gong.app
 ```
 
-Notifications only work when the app is signed with an Apple certificate and runs from `/Applications`; see
-[`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) (Dutch) for signing details.
+To hear about releases by email: on GitHub, **Watch → Custom → Releases**.
 
 ## Set up
 

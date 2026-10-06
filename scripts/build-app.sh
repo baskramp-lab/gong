@@ -31,6 +31,8 @@ if [ -n "$IDENTITY" ]; then
 else
   codesign --force --sign - "$APP"
   echo "Signed ad-hoc (no Apple Development identity found; notifications will not work)"
+  echo "warning: to get notifications, create a free certificate in Xcode → Settings → Accounts →" \
+    "Manage Certificates… → + → Apple Development, then run this script again (see README, Install step 2)." >&2
 fi
 if [ "${1:-}" = "--install" ]; then
   pkill -x Gong 2>/dev/null || true
