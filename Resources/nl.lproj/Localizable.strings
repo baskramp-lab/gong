@@ -72,3 +72,6 @@
 "HI %d" = "HI %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Meldingen staan uit — Instellingen openen…";
 "Could not change Start at login" = "Kon Start bij inloggen niet wijzigen";
+"Copy update command" = "Kopieer update-commando";
+"Gong — update available: %@" = "Gong — update beschikbaar: %@";
+"Update available: %@…" = "Update beschikbaar: %@…";

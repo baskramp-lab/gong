@@ -72,3 +72,6 @@
 "HI %d" = "HI %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Pemberitahuan dimatikan — Buka Seting…";
 "Could not change Start at login" = "Tidak dapat menukar Mula semasa log masuk";
+"Copy update command" = "Salin arahan kemas kini";
+"Gong — update available: %@" = "Gong — kemas kini tersedia: %@";
+"Update available: %@…" = "Kemas kini tersedia: %@…";

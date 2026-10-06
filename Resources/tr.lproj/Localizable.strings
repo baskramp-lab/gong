@@ -72,3 +72,6 @@
 "HI %d" = "HI %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Bildirimler kapalı — Ayarlar’ı Aç…";
 "Could not change Start at login" = "Girişte başlatma değiştirilemedi";
+"Copy update command" = "Güncelleme komutunu kopyala";
+"Gong — update available: %@" = "Gong — güncelleme mevcut: %@";
+"Update available: %@…" = "Güncelleme mevcut: %@…";

@@ -72,3 +72,6 @@
 "HI %d" = "HI %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Mitteilungen sind aus – Einstellungen öffnen …";
 "Could not change Start at login" = "„Beim Anmelden starten“ konnte nicht geändert werden";
+"Copy update command" = "Update-Befehl kopieren";
+"Gong — update available: %@" = "Gong – Update verfügbar: %@";
+"Update available: %@…" = "Update verfügbar: %@…";

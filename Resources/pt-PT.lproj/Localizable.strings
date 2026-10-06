@@ -72,3 +72,6 @@
 "HI %d" = "REC %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notificações desativadas — Abrir Definições…";
 "Could not change Start at login" = "Não foi possível alterar Abrir ao iniciar sessão";
+"Copy update command" = "Copiar comando de atualização";
+"Gong — update available: %@" = "Gong — atualização disponível: %@";
+"Update available: %@…" = "Atualização disponível: %@…";

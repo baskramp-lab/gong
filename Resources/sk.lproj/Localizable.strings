@@ -72,3 +72,6 @@
 "HI %d" = "REK. %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Hlásenia sú vypnuté — Otvoriť Nastavenia…";
 "Could not change Start at login" = "Spúšťanie po prihlásení sa nepodarilo zmeniť";
+"Copy update command" = "Kopírovať príkaz na aktualizáciu";
+"Gong — update available: %@" = "Gong — dostupná aktualizácia: %@";
+"Update available: %@…" = "Dostupná aktualizácia: %@…";

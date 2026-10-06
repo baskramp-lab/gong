@@ -72,3 +72,6 @@
 "HI %d" = "REK %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notiser är avstängda – Öppna Inställningar…";
 "Could not change Start at login" = "Det gick inte att ändra Starta vid inloggning";
+"Copy update command" = "Kopiera uppdateringskommando";
+"Gong — update available: %@" = "Gong – uppdatering tillgänglig: %@";
+"Update available: %@…" = "Uppdatering tillgänglig: %@…";

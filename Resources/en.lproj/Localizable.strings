@@ -37,6 +37,7 @@
 "Test" = "Test";
 "Save" = "Save";
 "Gong — iCal URL" = "Gong — iCal URL";
+"Copy update command" = "Copy update command";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notifications are off — Open Settings…";
 "15 minutes" = "15 minutes";
 "30 minutes" = "30 minutes";
@@ -53,6 +54,8 @@
 "Set iCal URL…" = "Set iCal URL…";
 "Start at login" = "Start at login";
 "Quit" = "Quit";
+"Gong — update available: %@" = "Gong — update available: %@";
+"Update available: %@…" = "Update available: %@…";
 "Not refreshed yet" = "Not refreshed yet";
 "Resume (paused until %@)" = "Resume (paused until %@)";
 "Edit" = "Edit";

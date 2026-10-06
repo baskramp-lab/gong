@@ -72,3 +72,6 @@
 "HI %d" = "REC %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notificările sunt dezactivate — Deschide Configurări…";
 "Could not change Start at login" = "Nu s-a putut modifica pornirea la autentificare";
+"Copy update command" = "Copiază comanda de actualizare";
+"Gong — update available: %@" = "Gong — actualizare disponibilă: %@";
+"Update available: %@…" = "Actualizare disponibilă: %@…";

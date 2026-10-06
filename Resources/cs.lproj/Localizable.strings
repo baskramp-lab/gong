@@ -72,3 +72,6 @@
 "HI %d" = "REK. %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Oznámení jsou vypnutá — Otevřít Nastavení…";
 "Could not change Start at login" = "Spouštění po přihlášení se nepodařilo změnit";
+"Copy update command" = "Kopírovat příkaz pro aktualizaci";
+"Gong — update available: %@" = "Gong — dostupná aktualizace: %@";
+"Update available: %@…" = "Dostupná aktualizace: %@…";

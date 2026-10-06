@@ -72,3 +72,6 @@
 "HI %d" = "ENN %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Ilmoitukset ovat pois päältä – Avaa asetukset…";
 "Could not change Start at login" = "Kirjautumisen yhteydessä käynnistämistä ei voitu muuttaa";
+"Copy update command" = "Kopioi päivityskomento";
+"Gong — update available: %@" = "Gong – päivitys saatavilla: %@";
+"Update available: %@…" = "Päivitys saatavilla: %@…";
