@@ -72,3 +72,6 @@
 "HI %d" = "MÁX %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notificaciones desactivadas — Abrir Ajustes…";
 "Could not change Start at login" = "No se pudo cambiar el inicio al iniciar sesión";
+"Copy update command" = "Copiar comando de actualización";
+"Gong — update available: %@" = "Gong: actualización disponible: %@";
+"Update available: %@…" = "Actualización disponible: %@…";

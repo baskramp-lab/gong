@@ -72,3 +72,6 @@
 "HI %d" = "REK %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notifikationer er slået fra – Åbn Indstillinger…";
 "Could not change Start at login" = "Kunne ikke ændre Start ved login";
+"Copy update command" = "Kopiér opdateringskommando";
+"Gong — update available: %@" = "Gong – opdatering tilgængelig: %@";
+"Update available: %@…" = "Opdatering tilgængelig: %@…";

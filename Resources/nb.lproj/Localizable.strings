@@ -72,3 +72,6 @@
 "HI %d" = "REK %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Varslinger er slått av – Åpne Innstillinger…";
 "Could not change Start at login" = "Kunne ikke endre Start ved pålogging";
+"Copy update command" = "Kopier oppdateringskommando";
+"Gong — update available: %@" = "Gong – oppdatering tilgjengelig: %@";
+"Update available: %@…" = "Oppdatering tilgjengelig: %@…";

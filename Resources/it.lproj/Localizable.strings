@@ -72,3 +72,6 @@
 "HI %d" = "REC %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notifiche disattivate — Apri Impostazioni…";
 "Could not change Start at login" = "Impossibile modificare l’avvio al login";
+"Copy update command" = "Copia comando di aggiornamento";
+"Gong — update available: %@" = "Gong — aggiornamento disponibile: %@";
+"Update available: %@…" = "Aggiornamento disponibile: %@…";

@@ -72,3 +72,6 @@
 "HI %d" = "REK. %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Powiadomienia są wyłączone — Otwórz Ustawienia…";
 "Could not change Start at login" = "Nie udało się zmienić uruchamiania przy logowaniu";
+"Copy update command" = "Kopiuj polecenie aktualizacji";
+"Gong — update available: %@" = "Gong — dostępna aktualizacja: %@";
+"Update available: %@…" = "Dostępna aktualizacja: %@…";

@@ -72,3 +72,6 @@
 "HI %d" = "MAX %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Notifications désactivées — Ouvrir les réglages…";
 "Could not change Start at login" = "Impossible de modifier l’ouverture à la connexion";
+"Copy update command" = "Copier la commande de mise à jour";
+"Gong — update available: %@" = "Gong — mise à jour disponible : %@";
+"Update available: %@…" = "Mise à jour disponible : %@…";

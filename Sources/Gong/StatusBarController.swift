@@ -18,6 +18,8 @@ final class StatusBarController {
         var notificationsOff: Bool
         /// False while a real meeting's modal is up.
         var canShowDemo: Bool
+        /// A newer release on GitHub (its version), or nil.
+        var updateVersion: String?
     }
 
     struct Actions {
@@ -32,6 +34,8 @@ final class StatusBarController {
         var toggleLaunchAtLogin: () -> Void
         var quit: () -> Void
         var openNotificationSettings: () -> Void
+        var openUpdatePage: () -> Void
+        var copyUpdateCommand: () -> Void
     }
 
     private let item: NSStatusItem
@@ -40,6 +44,9 @@ final class StatusBarController {
 
     private let nextItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     private let refreshedItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
+    private let updateItem = NSMenuItem(title: "", action: #selector(openUpdatePage), keyEquivalent: "")
+    private let copyUpdateItem = NSMenuItem(title: L("Copy update command"), action: #selector(copyUpdateCommand), keyEquivalent: "")
+    private let updateSeparator = NSMenuItem.separator()
     private let notificationsItem = NSMenuItem(title: L("⚠︎ Notifications are off — Open Settings…"), action: #selector(openNotificationSettings), keyEquivalent: "")
     static let pauseOptions: [(title: String, minutes: Int)] = [
         (L("15 minutes"), 15), (L("30 minutes"), 30), (L("1 hour"), 60), (L("2 hours"), 120), (L("4 hours"), 240),
@@ -55,7 +62,7 @@ final class StatusBarController {
     private let loginItem = NSMenuItem(title: L("Start at login"), action: #selector(toggleLogin), keyEquivalent: "")
     private let quitItem = NSMenuItem(title: L("Quit"), action: #selector(quit), keyEquivalent: "q")
 
-    /// Small coloured dot in the top-right corner of the menu bar button (stale feed / error).
+    /// Small coloured dot in the top-right corner of the menu bar button (error / stale feed / update available).
     private final class BadgeView: NSView {
         var color: NSColor = .systemRed { didSet { needsDisplay = true } }
         override func draw(_ dirtyRect: NSRect) {
@@ -72,7 +79,7 @@ final class StatusBarController {
         badge.isHidden = true
         item.button?.addSubview(badge)
         for mi in [nextItem, refreshedItem] { mi.isEnabled = false }
-        for mi in [notificationsItem, pauseTodayItem, resumeItem, demoItem, refreshItem, soundItem, unacceptedItem, urlItem, loginItem, quitItem] { mi.target = self }
+        for mi in [updateItem, copyUpdateItem, notificationsItem, pauseTodayItem, resumeItem, demoItem, refreshItem, soundItem, unacceptedItem, urlItem, loginItem, quitItem] { mi.target = self }
         let pauseMenu = NSMenu(title: L("Pause"))
         pauseMenu.autoenablesItems = false
         for option in Self.pauseOptions {
@@ -85,7 +92,7 @@ final class StatusBarController {
         pauseMenu.addItem(pauseTodayItem)
         pauseItem.submenu = pauseMenu
         menu.autoenablesItems = false
-        menu.items = [nextItem, refreshedItem, notificationsItem, .separator(), pauseItem, resumeItem, .separator(),
+        menu.items = [updateItem, copyUpdateItem, updateSeparator, nextItem, refreshedItem, notificationsItem, .separator(), pauseItem, resumeItem, .separator(),
                       demoItem, refreshItem, soundItem, unacceptedItem, .separator(), urlItem, loginItem, .separator(), quitItem]
         item.menu = menu
         item.button?.toolTip = "Gong"
@@ -94,17 +101,24 @@ final class StatusBarController {
     func update(dot: DotColor, model: MenuModel) {
         if let button = item.button {
             button.appearsDisabled = (dot == .gray)
+            // A problem (red, orange) outranks an available update (blue).
+            let color: NSColor?
             switch dot {
-            case .green, .gray:
-                badge.isHidden = true
-            case .orange, .red:
-                badge.color = dot == .orange ? .systemOrange : .systemRed
+            case .red: color = .systemRed
+            case .orange: color = .systemOrange
+            case .green, .gray: color = model.updateVersion == nil ? nil : .systemBlue
+            }
+            if let color {
+                badge.color = color
                 badge.frame = NSRect(x: button.bounds.maxX - badge.bounds.width - 2,
                                      y: button.bounds.maxY - badge.bounds.height - 2,
                                      width: badge.bounds.width, height: badge.bounds.height)
-                badge.isHidden = false
             }
+            badge.isHidden = color == nil
+            button.toolTip = model.updateVersion.map { L("Gong — update available: %@", $0) } ?? "Gong"
         }
+        updateItem.title = model.updateVersion.map { L("Update available: %@…", $0) } ?? ""
+        for mi in [updateItem, copyUpdateItem, updateSeparator] { mi.isHidden = model.updateVersion == nil }
         nextItem.title = model.nextMeetingText
         refreshedItem.title = model.lastRefreshText ?? L("Not refreshed yet")
         refreshedItem.isHidden = false
@@ -156,4 +170,6 @@ final class StatusBarController {
     @objc private func toggleLogin() { actions.toggleLaunchAtLogin() }
     @objc private func quit() { actions.quit() }
     @objc private func openNotificationSettings() { actions.openNotificationSettings() }
+    @objc private func openUpdatePage() { actions.openUpdatePage() }
+    @objc private func copyUpdateCommand() { actions.copyUpdateCommand() }
 }

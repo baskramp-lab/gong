@@ -10,6 +10,8 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$(swift build -c release --product Gong --arch arm64 --arch x86_64 --show-bin-path)/Gong" "$APP/Contents/MacOS/Gong"
 cp "Resources/Info.plist" "$APP/Contents/Info.plist"
+# Remember the cloned folder, so the menu's "Copy update command" can cd into it (stays on this Mac).
+plutil -insert GongSourcePath -string "$PWD" "$APP/Contents/Info.plist"
 # Pixel font for the retro modal (Info.plist ATSApplicationFontsPath = Fonts); optional, falls back to SF Mono.
 if ls Resources/Fonts/*.ttf >/dev/null 2>&1; then
   mkdir -p "$APP/Contents/Resources/Fonts"

@@ -35,7 +35,10 @@ show its notifications. Signing details: [`docs/DEVELOPMENT.md`](docs/DEVELOPMEN
 
 ## Updating
 
-To update, run this in the folder you cloned (about 3 minutes; your settings and calendar address are kept):
+Gong checks GitHub once a day for a new release. When there is one, a **blue dot** appears on the menu-bar icon and
+the menu shows **Update available**: click it for the release notes, or choose **Copy update command** and paste it in
+Terminal (it already includes the folder you cloned). By hand, in that folder (about 3 minutes; your settings and
+calendar address are kept):
 
 ```bash
 git pull && scripts/build-app.sh --install && open /Applications/Gong.app
@@ -56,7 +59,8 @@ an error.
 ## Privacy
 
 - The secret iCal address is stored in your macOS Keychain and is only sent to Google to fetch your calendar.
-- Gong talks to no other server and collects nothing.
+- Once a day Gong asks GitHub's public API for the latest Gong release (no data about you is sent). It talks to no
+  other server and collects nothing.
 - Settings and a cached copy of your calendar live in `~/Library/Application Support/Gong/`.
 
 ## Settings file

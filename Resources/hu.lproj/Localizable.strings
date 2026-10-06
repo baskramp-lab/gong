@@ -72,3 +72,6 @@
 "HI %d" = "REK. %d";
 "⚠︎ Notifications are off — Open Settings…" = "⚠︎ Az értesítések ki vannak kapcsolva – Beállítások megnyitása…";
 "Could not change Start at login" = "Nem sikerült módosítani az indítást bejelentkezéskor";
+"Copy update command" = "Frissítési parancs másolása";
+"Gong — update available: %@" = "Gong – frissítés érhető el: %@";
+"Update available: %@…" = "Frissítés érhető el: %@…";

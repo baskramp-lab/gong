@@ -11,6 +11,8 @@ final class AppCoordinator {
     private let feed: CalendarFeed
     private let scheduler: Scheduler
     private let notifier = Notifier()
+    private let updates = UpdateChecker(
+        currentVersion: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")
     private let sound: GongSoundPlayer
     private var blocking: BlockingWindowController!
     private var statusBar: StatusBarController!
@@ -71,6 +73,15 @@ final class AppCoordinator {
                 if let url = URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension?id=\(id)") {
                     NSWorkspace.shared.open(url)
                 }
+            },
+            openUpdatePage: { [weak self] in
+                if let url = self?.updates.available?.pageURL { NSWorkspace.shared.open(url) }
+            },
+            copyUpdateCommand: {
+                // build-app.sh records the cloned folder the app was built from.
+                let source = Bundle.main.object(forInfoDictionaryKey: "GongSourcePath") as? String
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(UpdateChecker.updateCommand(sourcePath: source), forType: .string)
             }
         ))
         notifier.requestPermission { [weak self] _ in DispatchQueue.main.async { self?.checkNotifications() } }
@@ -160,6 +171,7 @@ final class AppCoordinator {
     // MARK: - Tick
 
     func tick() {
+        checkForUpdateIfDue()
         let result = scheduler.tick(meetings: meetings)
         for n in result.notifications { notifier.send(meeting: n.meeting, minutesBefore: n.minutesBefore) }
         if result.blocking.isEmpty {
@@ -290,6 +302,18 @@ final class AppCoordinator {
         settingsWindow?.show()
     }
 
+    // MARK: - Updates
+
+    /// At most once a day (the 30 s tick and wake call this); the result shows as a blue dot and menu item.
+    private func checkForUpdateIfDue() {
+        guard updates.isDue else { return }
+        updates.lastCheck = Date()   // claim the slot now so ticks during the request don't start another
+        Task { @MainActor in
+            await updates.check()
+            updateStatusBar()
+        }
+    }
+
     // MARK: - Status bar
 
     private func updateStatusBar() {
@@ -314,7 +338,8 @@ final class AppCoordinator {
                                                 launchAtLogin: SMAppService.mainApp.status == .enabled,
                                                 loginNeedsApproval: SMAppService.mainApp.status == .requiresApproval,
                                                 notificationsOff: notificationsOff,
-                                                canShowDemo: !blocking.isVisible || demoActive))
+                                                canShowDemo: !blocking.isVisible || demoActive,
+                                                updateVersion: updates.available?.version))
     }
 
     // MARK: - Debug helpers
