@@ -144,8 +144,11 @@ final class AppCoordinator {
                 failedRefreshes = 0
             } catch {
                 // Right after wake the network is often not back yet: retry soon, a few times.
+                // Not after a 429: the feed's own backoff decides when the next request may go out.
                 failedRefreshes += 1
-                if failedRefreshes <= Self.quickRetries {
+                let rateLimited: Bool
+                if case .rateLimited? = error as? CalendarFeed.FeedError { rateLimited = true } else { rateLimited = false }
+                if !rateLimited && failedRefreshes <= Self.quickRetries {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in self?.refresh() }
                 }
                 let summary = (error as? URLError).map { "URLError \($0.code.rawValue)" }
@@ -321,7 +324,7 @@ final class AppCoordinator {
         let dot: StatusBarController.DotColor
         if !hasURL { dot = .red }
         else if scheduler.isPaused { dot = .gray }
-        else if feed.isStale(after: Double(settings.staleMinutes) * 60) { dot = .orange }
+        else if feed.isStale(after: settings.staleThreshold) { dot = .orange }
         else { dot = .green }
 
         let nextText: String
@@ -331,7 +334,9 @@ final class AppCoordinator {
             nextText = hasURL ? L("No meetings in the next 48 hours") : L("No iCal URL set")
         }
         let refreshed = feed.lastSuccess.map { L("Last refreshed: %@", Countdown.timeString($0)) }
-        statusBar.update(dot: dot, model: .init(nextMeetingText: nextText, lastRefreshText: refreshed,
+        let rateLimitText = feed.isRateLimited
+            ? feed.retryNotBefore.map { L("Google is limiting requests — next try at %@", Countdown.timeString($0)) } : nil
+        statusBar.update(dot: dot, model: .init(nextMeetingText: nextText, lastRefreshText: refreshed, rateLimitText: rateLimitText,
                                                 isPaused: scheduler.isPaused, pauseUntil: scheduler.isPaused ? scheduler.pauseUntil : nil,
                                                 soundEnabled: settings.soundEnabled,
                                                 includeUnaccepted: settings.includeUnaccepted,

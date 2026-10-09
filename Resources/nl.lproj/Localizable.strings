@@ -75,3 +75,5 @@
 "Copy update command" = "Kopieer update-commando";
 "Gong — update available: %@" = "Gong — update beschikbaar: %@";
 "Update available: %@…" = "Update beschikbaar: %@…";
+"Google is limiting requests — next try at %@" = "Google beperkt verzoeken — nieuwe poging om %@";
+"Google is limiting requests. Next try at %@." = "Google beperkt verzoeken. Nieuwe poging om %@.";

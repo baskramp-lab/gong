@@ -75,3 +75,5 @@
 "Copy update command" = "Kopírovat příkaz pro aktualizaci";
 "Gong — update available: %@" = "Gong — dostupná aktualizace: %@";
 "Update available: %@…" = "Dostupná aktualizace: %@…";
+"Google is limiting requests — next try at %@" = "Google omezuje požadavky — další pokus v %@";
+"Google is limiting requests. Next try at %@." = "Google omezuje požadavky. Další pokus v %@.";

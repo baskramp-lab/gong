@@ -75,3 +75,5 @@
 "Copy update command" = "Kopioi päivityskomento";
 "Gong — update available: %@" = "Gong – päivitys saatavilla: %@";
 "Update available: %@…" = "Päivitys saatavilla: %@…";
+"Google is limiting requests — next try at %@" = "Google rajoittaa pyyntöjä — seuraava yritys klo %@";
+"Google is limiting requests. Next try at %@." = "Google rajoittaa pyyntöjä. Seuraava yritys klo %@.";

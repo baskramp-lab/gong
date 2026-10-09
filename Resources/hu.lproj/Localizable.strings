@@ -75,3 +75,5 @@
 "Copy update command" = "Frissítési parancs másolása";
 "Gong — update available: %@" = "Gong – frissítés érhető el: %@";
 "Update available: %@…" = "Frissítés érhető el: %@…";
+"Google is limiting requests — next try at %@" = "A Google korlátozza a kéréseket — következő próba: %@";
+"Google is limiting requests. Next try at %@." = "A Google korlátozza a kéréseket. Következő próba: %@.";

@@ -29,7 +29,7 @@ final class JSONFileTests: XCTestCase {
         let s = AppSettings.default
         XCTAssertEqual(s.softMinutes, [30, 10]); XCTAssertEqual(s.hardMinutes, 5)
         XCTAssertEqual(s.snoozeMinutes, 2); XCTAssertEqual(s.lateGraceMinutes, 15)
-        XCTAssertTrue(s.soundEnabled); XCTAssertEqual(s.refreshMinutes, 5); XCTAssertEqual(s.staleMinutes, 15)
+        XCTAssertTrue(s.soundEnabled); XCTAssertEqual(s.refreshMinutes, 15); XCTAssertEqual(s.staleMinutes, 35)
         XCTAssertEqual(s.schedulerConfig, SchedulerConfig(softMinutes: [30, 10], hardMinutes: 5, snoozeMinutes: 2, lateGraceMinutes: 15))
     }
 

@@ -5,6 +5,7 @@
 "No meetings in the next 48 hours" = "No meetings in the next 48 hours";
 "No iCal URL set" = "No iCal URL set";
 "Last refreshed: %@" = "Last refreshed: %@";
+"Google is limiting requests — next try at %@" = "Google is limiting requests — next try at %@";
 "+%d MORE — SEE YOUR CALENDAR" = "+%d MORE — SEE YOUR CALENDAR";
 "SCORE %1$d · HI %2$d · NEXT TRY AT THE NEXT MEETING" = "SCORE %1$d · HI %2$d · NEXT TRY AT THE NEXT MEETING";
 "JOIN MEET" = "JOIN MEET";
@@ -65,6 +66,7 @@
 "Select All" = "Select All";
 "The server answered with status %d. Check that the URL is still valid (Google may have reset the secret address)." = "The server answered with status %d. Check that the URL is still valid (Google may have reset the secret address).";
 "This address is not a calendar (no VCALENDAR). Paste the \"Secret address in iCal format\", not the regular calendar link." = "This address is not a calendar (no VCALENDAR). Paste the \"Secret address in iCal format\", not the regular calendar link.";
+"Google is limiting requests. Next try at %@." = "Google is limiting requests. Next try at %@.";
 "starts at %1$@ — in %2$d min" = "starts at %1$@ — in %2$d min";
 "starts at %@ — in less than 1 min" = "starts at %@ — in less than 1 min";
 "started %1$d min ago — %2$@" = "started %1$d min ago — %2$@";
