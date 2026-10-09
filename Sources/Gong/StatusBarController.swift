@@ -7,6 +7,8 @@ final class StatusBarController {
     struct MenuModel {
         var nextMeetingText: String
         var lastRefreshText: String?
+        /// Google answered 429; when Gong will try again. Nil when not rate limited.
+        var rateLimitText: String?
         var isPaused: Bool
         var pauseUntil: Date?
         var soundEnabled: Bool
@@ -44,6 +46,7 @@ final class StatusBarController {
 
     private let nextItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     private let refreshedItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
+    private let rateLimitItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     private let updateItem = NSMenuItem(title: "", action: #selector(openUpdatePage), keyEquivalent: "")
     private let copyUpdateItem = NSMenuItem(title: L("Copy update command"), action: #selector(copyUpdateCommand), keyEquivalent: "")
     private let updateSeparator = NSMenuItem.separator()
@@ -78,7 +81,7 @@ final class StatusBarController {
         item.button?.image = Self.gongImage()
         badge.isHidden = true
         item.button?.addSubview(badge)
-        for mi in [nextItem, refreshedItem] { mi.isEnabled = false }
+        for mi in [nextItem, refreshedItem, rateLimitItem] { mi.isEnabled = false }
         for mi in [updateItem, copyUpdateItem, notificationsItem, pauseTodayItem, resumeItem, demoItem, refreshItem, soundItem, unacceptedItem, urlItem, loginItem, quitItem] { mi.target = self }
         let pauseMenu = NSMenu(title: L("Pause"))
         pauseMenu.autoenablesItems = false
@@ -92,7 +95,7 @@ final class StatusBarController {
         pauseMenu.addItem(pauseTodayItem)
         pauseItem.submenu = pauseMenu
         menu.autoenablesItems = false
-        menu.items = [updateItem, copyUpdateItem, updateSeparator, nextItem, refreshedItem, notificationsItem, .separator(), pauseItem, resumeItem, .separator(),
+        menu.items = [updateItem, copyUpdateItem, updateSeparator, nextItem, refreshedItem, rateLimitItem, notificationsItem, .separator(), pauseItem, resumeItem, .separator(),
                       demoItem, refreshItem, soundItem, unacceptedItem, .separator(), urlItem, loginItem, .separator(), quitItem]
         item.menu = menu
         item.button?.toolTip = "Gong"
@@ -122,6 +125,8 @@ final class StatusBarController {
         nextItem.title = model.nextMeetingText
         refreshedItem.title = model.lastRefreshText ?? L("Not refreshed yet")
         refreshedItem.isHidden = false
+        rateLimitItem.title = model.rateLimitText ?? ""
+        rateLimitItem.isHidden = model.rateLimitText == nil
         pauseItem.isHidden = model.isPaused
         resumeItem.isHidden = !model.isPaused
         if let until = model.pauseUntil {

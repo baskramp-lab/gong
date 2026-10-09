@@ -75,3 +75,5 @@
 "Copy update command" = "Update-Befehl kopieren";
 "Gong — update available: %@" = "Gong – Update verfügbar: %@";
 "Update available: %@…" = "Update verfügbar: %@…";
+"Google is limiting requests — next try at %@" = "Google begrenzt Anfragen — nächster Versuch um %@";
+"Google is limiting requests. Next try at %@." = "Google begrenzt Anfragen. Nächster Versuch um %@.";

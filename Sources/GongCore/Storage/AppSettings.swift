@@ -6,8 +6,10 @@ public struct AppSettings: Codable, Equatable {
     public var snoozeMinutes: Int = 2
     public var lateGraceMinutes: Int = 15
     public var soundEnabled: Bool = true
-    public var refreshMinutes: Int = 5
-    public var staleMinutes: Int = 15
+    /// Google answers 429 (too many requests) when a large feed is fetched every 5 minutes.
+    public var refreshMinutes: Int = 15
+    /// Orange dot after this long without a good fetch; never below two refresh periods (see `staleThreshold`).
+    public var staleMinutes: Int = 35
     /// Empty: taken from the secret iCal URL (see `CalendarIdentity`). Set it when the URL does not carry it.
     public var myEmail: String = ""
     public var includeUnaccepted: Bool = true    // also alert for invitations I haven't accepted yet
@@ -16,6 +18,11 @@ public struct AppSettings: Codable, Equatable {
     public static let `default` = AppSettings()
 
     public init() {}
+
+    /// Seconds without a good fetch before the feed counts as stale: one missed refresh is not yet a problem.
+    public var staleThreshold: TimeInterval {
+        Double(max(staleMinutes, 2 * max(1, refreshMinutes) + 5)) * 60
+    }
 
     public var schedulerConfig: SchedulerConfig {
         SchedulerConfig(softMinutes: softMinutes, hardMinutes: hardMinutes, snoozeMinutes: snoozeMinutes, lateGraceMinutes: lateGraceMinutes)

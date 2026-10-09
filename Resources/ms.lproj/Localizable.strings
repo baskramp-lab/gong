@@ -75,3 +75,5 @@
 "Copy update command" = "Salin arahan kemas kini";
 "Gong — update available: %@" = "Gong — kemas kini tersedia: %@";
 "Update available: %@…" = "Kemas kini tersedia: %@…";
+"Google is limiting requests — next try at %@" = "Google mengehadkan permintaan — cubaan seterusnya pada %@";
+"Google is limiting requests. Next try at %@." = "Google mengehadkan permintaan. Cubaan seterusnya pada %@.";
